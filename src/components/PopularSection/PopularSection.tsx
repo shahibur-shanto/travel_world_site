@@ -1,12 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Image from "next/image";
-import image from "../../assets/background.jpg";
 import { useDestinationsQuery } from "@/redux/api/destinationApi";
 import ErrorPage from "@/app/error";
 import Loading from "@/app/loading";
 import { IDestination } from "@/types";
-import { Buffer } from "buffer";
 import { useEffect } from "react";
 
 // import { Blob } from "blob-polyfill";
@@ -19,6 +17,7 @@ interface IPartialDestination {
 
 const PopularSectionPage = () => {
 	const { data, isLoading, isError, refetch } = useDestinationsQuery({});
+	console.log(data);
 	useEffect(() => {
 		// You can call refetch when the component mounts or whenever you want to refresh the data.
 		// For example, you can call refetch after adding a new book.
@@ -33,32 +32,7 @@ const PopularSectionPage = () => {
 	}
 
 	const destinationData = data?.destination;
-
-	// const images = destinationData?.data.map((destination: IDestination) => {
-	// 	const blob = new Blob(
-	// 	  [new Uint8Array(Buffer.from(destination.image.data, "base64"))],
-	// 	  { type: "image/jpeg" }
-	// 	);
-
-	// 	const imageElement = new Image();
-	// 	imageElement.src = URL.createObjectURL(blob);
-
-	// 	return imageElement;
-	//   });
-
-	// const images = destinationData?.data.map((destination: IDestination) => {
-	// 	const dataURI = `data:image/jpeg;base64,${Buffer.from(
-	// 		destination.image.data,
-	// 		"base64"
-	// 	).toString()}`;
-
-	// 	return {
-	// 		src: dataURI,
-	// 		alt: destination.location,
-	// 		width: 350,
-	// 		height: 350,
-	// 	};
-	// });
+	console.log(destinationData);
 
 	return (
 		<div className="bg-sky-50">
