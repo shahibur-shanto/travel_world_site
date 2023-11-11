@@ -9,7 +9,13 @@ import { IDestination } from "@/types";
 import { Buffer } from "buffer";
 import { useEffect } from "react";
 
-import { Blob } from "blob-polyfill";
+// import { Blob } from "blob-polyfill";
+
+interface IPartialDestination {
+	location: string;
+	cost: number;
+	image: string; // Assuming image is a string URL
+}
 
 const PopularSectionPage = () => {
 	const { data, isLoading, isError, refetch } = useDestinationsQuery({});
@@ -40,19 +46,19 @@ const PopularSectionPage = () => {
 	// 	return imageElement;
 	//   });
 
-	const images = destinationData?.data.map((destination: IDestination) => {
-		const dataURI = `data:image/jpeg;base64,${Buffer.from(
-			destination.image.data,
-			"base64"
-		).toString()}`;
+	// const images = destinationData?.data.map((destination: IDestination) => {
+	// 	const dataURI = `data:image/jpeg;base64,${Buffer.from(
+	// 		destination.image.data,
+	// 		"base64"
+	// 	).toString()}`;
 
-		return {
-			src: dataURI,
-			alt: destination.location,
-			width: 350,
-			height: 350,
-		};
-	});
+	// 	return {
+	// 		src: dataURI,
+	// 		alt: destination.location,
+	// 		width: 350,
+	// 		height: 350,
+	// 	};
+	// });
 
 	return (
 		<div className="bg-sky-50">
@@ -66,16 +72,15 @@ const PopularSectionPage = () => {
 					</div>
 				</div>
 				<div className="flex justify-around flex-wrap">
-					{Array.isArray(destinationData?.data) &&
-						destinationData?.data.map((destination: IDestination) => (
-							<>
-								<div className="mt-10 mx-0.5">
-									<Image {...images[destination.id]} alt="" />
-									<h1>{destination.location}</h1>
-									<p>{destination.cost}</p>
-								</div>
-							</>
-						))}
+					{destinationData?.map((destination: IDestination) => (
+						<>
+							<div className="mt-10 mx-0.5">
+								<Image src={`${destination.image}`} alt="" />
+								<h1>{destination.location}</h1>
+								<p>{destination.cost}</p>
+							</div>
+						</>
+					))}
 				</div>
 			</div>
 		</div>

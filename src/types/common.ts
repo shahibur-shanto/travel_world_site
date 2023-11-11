@@ -21,12 +21,12 @@ export type IGenericErrorMessage = {
 };
 
 export type IDestination = {
-	id: string;
-	country: string;
-	description: string;
-	location: string;
-	category: string;
-	transport: string;
-	cost: string;
-	image: Buffer;
+	id?: string;
+	country?: string;
+	description?: string;
+	location?: string;
+	category?: string;
+	transport?: string;
+	cost?: string;
+	image?: string;
 };
