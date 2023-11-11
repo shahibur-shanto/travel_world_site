@@ -4,39 +4,30 @@ import Image from "next/image";
 import { useDestinationsQuery } from "@/redux/api/destinationApi";
 import ErrorPage from "@/app/error";
 import Loading from "@/app/loading";
-import { IDestination } from "@/types";
+import { ApiResponse, IDestination } from "@/types";
 import { useEffect } from "react";
 
-// import { Blob } from "blob-polyfill";
-
-interface IPartialDestination {
-	location: string;
-	cost: number;
-	image: string; // Assuming image is a string URL
-}
-
 const PopularSectionPage = () => {
-	const { data, isLoading, isError, refetch } = useDestinationsQuery({});
-	console.log(data);
+	const { data, isLoading, isError, refetch } = useDestinationsQuery({
+		transformResponse: (response: ApiResponse) => ({
+			data: response.destination.data,
+			meta: response.destination.meta,
+		}),
+	});
+
 	useEffect(() => {
-		// You can call refetch when the component mounts or whenever you want to refresh the data.
-		// For example, you can call refetch after adding a new book.
 		refetch();
 	}, [data, refetch]);
 	if (isLoading) {
-		return <Loading />; // Show a loading indicator
+		return <Loading />;
 	}
 
 	if (isError) {
-		return <ErrorPage />; // Show an error message
+		return <ErrorPage />;
 	}
-
-	const destinationData = data?.destination;
-	console.log(destinationData);
-
 	return (
 		<div className="bg-sky-50">
-			<div className="w-11/12">
+			<div className="">
 				<div className="w-full flex justify-center items-center flex-col">
 					<div className="">
 						<p>SIMPLY AMAZING PLACES</p>
@@ -45,11 +36,16 @@ const PopularSectionPage = () => {
 						<h1>POPULAR DESTINATION</h1>
 					</div>
 				</div>
-				<div className="flex justify-around flex-wrap">
-					{destinationData?.map((destination: IDestination) => (
+				<div className="flex justify-evenly flex-wrap">
+					{data?.destination?.data?.map((destination: IDestination) => (
 						<>
 							<div className="mt-10 mx-0.5">
-								<Image src={`${destination.image}`} alt="" />
+								<Image
+									width={350}
+									height={350}
+									src={`${destination.image}`}
+									alt=""
+								/>
 								<h1>{destination.location}</h1>
 								<p>{destination.cost}</p>
 							</div>

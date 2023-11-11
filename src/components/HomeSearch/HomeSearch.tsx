@@ -6,7 +6,9 @@ const HomeSearchPage = () => {
 			<div className="shadow-md rounded-lg w-100vw max-w-screen-lg">
 				<div className="grid grid-cols-5 grid-rows-2 gap-4">
 					<div className="col-span-10 row-span-1 text-center">
-						<h1 className="text-white text-3xl font-semibold">Search for your trip</h1>
+						<h1 className="text-white text-3xl font-semibold">
+							Search for your trip
+						</h1>
 					</div>
 					<div className="col-span-1 row-span-2">
 						<input
@@ -48,7 +50,7 @@ const HomeSearchPage = () => {
 						/>
 					</div>
 					<div className="col-span-1 row-span-2">
-						<button className="bg-blue-500 text-white py-4 px-6 rounded-md hover:bg-blue-600 cursor-pointer w-full">
+						<button className="bg-blue-500 text-white mt-2 p-4 rounded-md hover:bg-blue-600 cursor-pointer w-full">
 							SEARCH
 						</button>
 					</div>

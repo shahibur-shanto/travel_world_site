@@ -21,12 +21,29 @@ export type IGenericErrorMessage = {
 };
 
 export type IDestination = {
-	id?: string;
-	country?: string;
-	description?: string;
-	location?: string;
-	category?: string;
-	transport?: string;
-	cost?: string;
-	image?: string;
+	id: string;
+	country: string;
+	description: string;
+	location: string;
+	category: string;
+	transport: string;
+	cost: string;
+	image: string;
 };
+
+export interface ApiResponse {
+	destination: {
+		statusCode: number;
+		success: boolean;
+		message: string;
+		meta: {
+			page: number;
+			limit: number;
+			total: number;
+			totalPage: number;
+		};
+		data: IDestination[];
+	};
+	meta: any;
+	data: IDestination[];
+}

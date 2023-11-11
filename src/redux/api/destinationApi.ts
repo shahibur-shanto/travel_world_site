@@ -1,4 +1,4 @@
-import { IDestination, IMeta } from "@/types";
+import { ApiResponse, IDestination, IMeta } from "@/types";
 import { baseApi } from "./baseApi";
 
 const BASE_DESTINATION_API_URL = "/destination";
@@ -7,14 +7,13 @@ export const destinationApi = baseApi.injectEndpoints({
 	endpoints: (build) => ({
 		// get all faculty user endpoint
 		destinations: build.query({
-			query: (arg: Record<string, any>) => {
+			query: () => {
 				return {
-					url: "/destinations",
+					url: "/allDestination",
 					method: "GET",
-					params: arg,
 				};
 			},
-			transformResponse: (response: IDestination[], meta: IMeta) => {
+			transformResponse: (response: ApiResponse, meta: IMeta) => {
 				return {
 					destination: response,
 					meta,
@@ -22,15 +21,7 @@ export const destinationApi = baseApi.injectEndpoints({
 			},
 			// providesTags: ['destination'],
 		}),
-		// // get single faculty user endpoint
-		// faculty: build.query({
-		// 	query: (id: string | string[] | undefined) => ({
-		// 		url: `${BASE_FACULTY_API_URL}/profile/${id}`,
-		// 		method: "GET",
-		// 	}),
-		// 	providesTags: [tagTypes.faculty],
-		// }),
-		// create faculty user endpoint
+
 		addDestinationWithFormData: build.mutation({
 			query: (data) => {
 				console.log(data);
