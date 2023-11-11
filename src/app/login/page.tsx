@@ -20,7 +20,7 @@ const LoginPage = () => {
 
 	const onSubmit: SubmitHandler<FromValues> = async (data: any) => {
 		try {
-			console.log("data : ", data);
+			console.log(data);
 			const res = await userLogin({ ...data }).unwrap();
 			console.log("response: ", res);
 			if (res?.accessToken) {
