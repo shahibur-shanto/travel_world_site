@@ -14,7 +14,7 @@ export const authApi = baseApi.injectEndpoints({
 			query: (loginData) => {
 				console.log(loginData);
 				return {
-					url: "auth/signin",
+					url: "/auth/signin",
 					method: "POST",
 					data: loginData.values,
 					contentType: "multipart/form-data",
