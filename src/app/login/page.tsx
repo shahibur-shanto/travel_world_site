@@ -5,9 +5,7 @@ import Image from "next/image";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
-import {
-	useUserLoginMutation,
-} from "@/redux/api/authApi";
+import { useUserLoginMutation } from "@/redux/api/authApi";
 import { useRouter } from "next/navigation";
 import { storeUserInfo } from "@/services/auth.service";
 
@@ -22,9 +20,11 @@ const LoginPage = () => {
 
 	const onSubmit: SubmitHandler<FromValues> = async (data: any) => {
 		try {
+			console.log("data : ", data);
 			const res = await userLogin({ ...data }).unwrap();
+			console.log("response: ", res);
 			if (res?.accessToken) {
-				router.push("/super_admin");
+				router.push("/");
 				message.success("User logged in successfully!");
 			}
 			storeUserInfo({ accessToken: res?.accessToken });

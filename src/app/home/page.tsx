@@ -13,7 +13,7 @@ import { useDestinationsQuery } from "@/redux/api/destinationApi";
 
 const HomePage = () => {
 	const style = {
-		// backgroundImage: `url(${backgroundImage.s	rc})`,
+		backgroundImage: `url(${backgroundImage.src})`,
 		backgroundPosition: "center",
 		backgroundSize: "cover",
 		backgroundRepeat: "no-repeat",
@@ -23,17 +23,14 @@ const HomePage = () => {
 	};
 	return (
 		<div style={style}>
-			<h1>HI</h1>
-			<h2>Hello</h2>
-			{/* <NavbarPage />
+			<NavbarPage />
 			<SloganPage />
 			<HomeSearchPage />
-			<IntroSectionPage /> */}
+			<IntroSectionPage />
 			<PopularSectionPage />
-
-			{/* <TestimonialPage />
+			<TestimonialPage />
 			<NewsSectionPage />
-			<FooterPage /> */}
+			<FooterPage />
 		</div>
 	);
 };
